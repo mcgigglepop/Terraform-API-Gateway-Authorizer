@@ -52,7 +52,7 @@ EOF
 
 # Authorizer Function Invocation Policy
 resource "aws_iam_role_policy" "apigw_authorizer_invocation_policy" {
-  role = "${aws_iam_role.apigw_authorizer_invocation_role.id}"
+  role = aws_iam_role.apigw_authorizer_invocation_role.id
 
   policy = <<EOF
 {

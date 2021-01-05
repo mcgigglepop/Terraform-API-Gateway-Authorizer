@@ -17,7 +17,7 @@ resource "aws_lambda_function" "update_lambda" {
 resource "aws_lambda_permission" "update_lambda_permission" {
   statement_id  = "AllowExecutionFromAPIGatewayUpdate"
   action        = "lambda:InvokeFunction"
-  function_name = "${aws_lambda_function.update_lambda.function_name}"
+  function_name = aws_lambda_function.update_lambda.function_name
   principal     = "apigateway.amazonaws.com"
   source_arn = "arn:aws:execute-api:${var.AWS_REGION}:${data.aws_caller_identity.current.account_id}:${aws_api_gateway_rest_api.apigw_api_gateway.id}/*/${aws_api_gateway_method.update_method.http_method}${aws_api_gateway_resource.update_resource.path}"
 }
@@ -84,6 +84,6 @@ EOF
 
 # Policy attachment for update function role and policy
 resource "aws_iam_role_policy_attachment" "update_lambda_logs_policy_attachment" {
-  role = "${aws_iam_role.update_lambda_role.name}"
-  policy_arn = "${aws_iam_policy.update_lambda_logging_policy.arn}"
+  role = aws_iam_role.update_lambda_role.name
+  policy_arn = aws_iam_policy.update_lambda_logging_policy.arn
 }

@@ -17,7 +17,7 @@ resource "aws_lambda_function" "apigw_authorizer_lambda" {
 
   environment {
     variables = {
-      DYNAMODB_NAME = var.SERVICE_AUTHORIZER_URL
+      DYNAMODB_TABLE = aws_dynamodb_table.apigw_dynamodb_table.id
     }
   }
 }

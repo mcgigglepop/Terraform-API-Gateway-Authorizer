@@ -83,7 +83,17 @@ resource "aws_iam_role" "apigw_authorizer_lambda_role" {
       },
       "Effect": "Allow",
       "Sid": ""
-    }
+    },
+    {
+            "Sid": "VisualEditor1",
+            "Effect": "Allow",
+            "Action": [
+                "dynamodb:GetItem"
+            ],
+            "Resource": [
+                "${aws_dynamodb_table.apigw_dynamodb_table.arn}"
+            ]
+        }
   ]
 }
 EOF

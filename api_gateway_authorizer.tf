@@ -10,7 +10,7 @@ resource "aws_api_gateway_authorizer" "apigw_api_gateway_authorizer" {
 resource "aws_lambda_function" "apigw_authorizer_lambda" {
   filename          = "../.serverless/${var.SERVICE}.zip"
   source_code_hash  = filebase64sha256("../.serverless/${var.SERVICE}.zip")
-  function_name     = "${var.STAGE}-${var.STAGE}-authorizer-function"
+  function_name     = "${var.SERVICE}-${var.STAGE}-authorizer-function"
   role              = aws_iam_role.apigw_authorizer_lambda_role.arn
   handler           = "functions/authorizer.handler"
   runtime           = "nodejs12.x"

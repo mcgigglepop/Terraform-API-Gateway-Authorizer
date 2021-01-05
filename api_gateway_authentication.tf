@@ -1,6 +1,6 @@
 # API Gateway Usage Plan
 resource "aws_api_gateway_usage_plan" "apigw_usage_plan" {
-  name = "${var.SERVICE}_usage_plan"
+  name = "${var.SERVICE}_${var.STAGE}_usage_plan"
 
   api_stages {
     api_id = aws_api_gateway_rest_api.apigw_api_gateway.id
@@ -10,7 +10,7 @@ resource "aws_api_gateway_usage_plan" "apigw_usage_plan" {
 
 # API Gateway Key
 resource "aws_api_gateway_api_key" "apigw_auth_key" {
-  name = "${var.SERVICE}_auth_key"
+  name = "${var.SERVICE}_${var.STAGE}_auth_key"
 }
 
 # API Gateway Key Usage Plan

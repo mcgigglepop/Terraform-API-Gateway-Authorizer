@@ -3,9 +3,9 @@ resource "aws_lambda_function" "get_lambda" {
   filename          = "../.serverless/${var.SERVICE}.zip"
   source_code_hash  = filebase64sha256("../.serverless/${var.SERVICE}.zip")
   function_name     = "${var.SERVICE}-${var.STAGE}-get"
-  role          = aws_iam_role.get_lambda_role.arn
-  handler       = "functions/get.get"
-  runtime       = "nodejs12.x"
+  role              = aws_iam_role.get_lambda_role.arn
+  handler           = "functions/get.get"
+  runtime           = "nodejs12.x"
   environment {
     variables = {
       DYNAMODB_TABLE = aws_dynamodb_table.apigw_dynamodb_table.id
@@ -19,7 +19,7 @@ resource "aws_lambda_permission" "get_lambda_permission" {
   action        = "lambda:InvokeFunction"
   function_name = aws_lambda_function.get_lambda.function_name
   principal     = "apigateway.amazonaws.com"
-  source_arn = "arn:aws:execute-api:${var.AWS_REGION}:${data.aws_caller_identity.current.account_id}:${aws_api_gateway_rest_api.apigw_api_gateway.id}/*/${aws_api_gateway_method.get_method.http_method}${aws_api_gateway_resource.get_resource.path}"
+  source_arn    = "arn:aws:execute-api:${var.AWS_REGION}:${data.aws_caller_identity.current.account_id}:${aws_api_gateway_rest_api.apigw_api_gateway.id}/*/${aws_api_gateway_method.get_method.http_method}${aws_api_gateway_resource.get_resource.path}"
 }
 
 # Cloudwatch Log Group Resource for the Get Function
@@ -29,7 +29,7 @@ resource "aws_cloudwatch_log_group" "get_lambda_cw_group" {
 
 # IAM Role for the Get Lambda Function
 resource "aws_iam_role" "get_lambda_role" {
-  name = "get_role"
+  name               = "get_role"
   assume_role_policy = <<POLICY
 {
   "Version": "2012-10-17",
@@ -84,6 +84,6 @@ EOF
 
 # Policy attachment for get function role and policy
 resource "aws_iam_role_policy_attachment" "get_lambda_logs_policy_attachment" {
-  role = aws_iam_role.get_lambda_role.name
-  policy_arn = aws_iam_policy.get_lambda_logging_policy.arn
+  role        = aws_iam_role.get_lambda_role.name
+  policy_arn  = aws_iam_policy.get_lambda_logging_policy.arn
 }

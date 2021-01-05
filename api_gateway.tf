@@ -27,12 +27,12 @@ resource "aws_api_gateway_resource" "put_resource" {
 
 # Put Method
 resource "aws_api_gateway_method" "put_method" {
-  rest_api_id   = "${aws_api_gateway_rest_api.apigw_api_gateway.id}"
-  resource_id   = "${aws_api_gateway_resource.put_resource.id}"
-  http_method   = "PUT"
-  authorization = "CUSTOM"
-  authorizer_id = "${aws_api_gateway_authorizer.apigw_api_gateway_authorizer.id}"
-  api_key_required = true
+  rest_api_id       = "${aws_api_gateway_rest_api.apigw_api_gateway.id}"
+  resource_id       = "${aws_api_gateway_resource.put_resource.id}"
+  http_method       = "PUT"
+  authorization     = "CUSTOM"
+  authorizer_id     = "${aws_api_gateway_authorizer.apigw_api_gateway_authorizer.id}"
+  api_key_required  = true
 }
 
 # Put Method Integration
@@ -67,12 +67,12 @@ resource "aws_api_gateway_resource" "get_resource" {
 
 # Get Method
 resource "aws_api_gateway_method" "get_method" {
-  rest_api_id   = "${aws_api_gateway_rest_api.apigw_api_gateway.id}"
-  resource_id   = "${aws_api_gateway_resource.get_resource.id}"
-  http_method   = "GET"
-  authorization = "CUSTOM"
-  authorizer_id = "${aws_api_gateway_authorizer.apigw_api_gateway_authorizer.id}"
-  api_key_required = true
+  rest_api_id       = "${aws_api_gateway_rest_api.apigw_api_gateway.id}"
+  resource_id       = "${aws_api_gateway_resource.get_resource.id}"
+  http_method       = "GET"
+  authorization     = "CUSTOM"
+  authorizer_id     = "${aws_api_gateway_authorizer.apigw_api_gateway_authorizer.id}"
+  api_key_required  = true
 }
 
 # Get Method Integration
@@ -107,12 +107,12 @@ resource "aws_api_gateway_resource" "update_resource" {
 
 # Update Method
 resource "aws_api_gateway_method" "update_method" {
-  rest_api_id   = "${aws_api_gateway_rest_api.apigw_api_gateway.id}"
-  resource_id   = "${aws_api_gateway_resource.update_resource.id}"
-  http_method   = "PATCH"
-  authorization = "CUSTOM"
-  authorizer_id = "${aws_api_gateway_authorizer.apigw_api_gateway_authorizer.id}"
-  api_key_required = true
+  rest_api_id       = "${aws_api_gateway_rest_api.apigw_api_gateway.id}"
+  resource_id       = "${aws_api_gateway_resource.update_resource.id}"
+  http_method       = "PATCH"
+  authorization     = "CUSTOM"
+  authorizer_id     = "${aws_api_gateway_authorizer.apigw_api_gateway_authorizer.id}"
+  api_key_required  = true
 }
 
 # Update Method Integration

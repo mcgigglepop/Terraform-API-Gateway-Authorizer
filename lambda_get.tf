@@ -17,7 +17,7 @@ resource "aws_lambda_function" "get_lambda" {
 resource "aws_lambda_permission" "get_lambda_permission" {
   statement_id  = "AllowExecutionFromAPIGatewayGet"
   action        = "lambda:InvokeFunction"
-  function_name = "${aws_lambda_function.get_lambda.function_name}"
+  function_name = aws_lambda_function.get_lambda.function_name
   principal     = "apigateway.amazonaws.com"
   source_arn = "arn:aws:execute-api:${var.AWS_REGION}:${data.aws_caller_identity.current.account_id}:${aws_api_gateway_rest_api.apigw_api_gateway.id}/*/${aws_api_gateway_method.get_method.http_method}${aws_api_gateway_resource.get_resource.path}"
 }
@@ -84,6 +84,6 @@ EOF
 
 # Policy attachment for get function role and policy
 resource "aws_iam_role_policy_attachment" "get_lambda_logs_policy_attachment" {
-  role = "${aws_iam_role.get_lambda_role.name}"
-  policy_arn = "${aws_iam_policy.get_lambda_logging_policy.arn}"
+  role = aws_iam_role.get_lambda_role.name
+  policy_arn = aws_iam_policy.get_lambda_logging_policy.arn
 }

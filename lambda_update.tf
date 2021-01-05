@@ -71,7 +71,7 @@ resource "aws_iam_policy" "update_lambda_logging_policy" {
             "Sid": "VisualEditor1",
             "Effect": "Allow",
             "Action": [
-                "dynamodb:UpdateItem"
+                "dynamodb:Update"
             ],
             "Resource": [
                 "${aws_dynamodb_table.apigw_dynamodb_table.arn}"
